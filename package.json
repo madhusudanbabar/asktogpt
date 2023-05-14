@@ -2,10 +2,9 @@
   "name": "ask_to_gpt",
   "version": "1.0.0",
   "description": "Google assistant action that connects user prompts with openAI",
-  "main": "index.js",
+  "main": "api/index.js",
   "author": "krypton",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "start": "node api/index.js"
   },
