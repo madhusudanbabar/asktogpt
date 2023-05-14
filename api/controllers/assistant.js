@@ -3,12 +3,12 @@ const app = conversation();
 const { openai } = require("../openai/index");
 
 app.handle("test_handle", async (conv) => {
-  console.log(conv);
   try {
     const data = await openai.createCompletion({
       prompt: conv.intent.query,
+      model: "gpt-3.5-turbo",
     });
-    console.log(data);
+    console.log(conv);
     conv.add(data);
   } catch (e) {
     console.error(e);

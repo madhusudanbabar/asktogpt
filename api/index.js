@@ -15,21 +15,18 @@ app.use(
 
 app.get("/", (req, res) => res.send("hello world"));
 app.use("/fulfilment", assistant);
-app.get("/test", (req, res) => {
-  openai
-    .createCompletion({
-      prompt: "hello world",
+app.get("/test", async (req, res) => {
+  try {
+    const data = await openai.createCompletion({
+      prompt: "explain javascript to me",
       model: "gpt-3.5-turbo",
-    })
-    .then((data) => {
-      console.log(data);
-      res.send(data);
-    })
-    .catch((e) => {
-      console.error(e);
-      res.status(e.response.status);
-      res.send(e.response.statusText);
     });
+    console.log(data);
+  } catch (e) {
+    console.error(e.response);
+    res.status(500);
+    res.send(Object.keys(e));
+  }
 });
 
 app.listen(PORT, "0.0.0.0", () =>
