@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const assistantRouter = require("./routers/assistant");
+const assistant = require("./controllers/assistant").assistant;
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -12,7 +12,7 @@ app.use(
 );
 
 app.get("/", (req, res) => res.send("hello world"));
-app.use("/fulfilment", assistantRouter);
+app.use("/fulfilment", assistant);
 
 app.listen(PORT, "0.0.0.0", () =>
   console.log(`server running on http://localhost:${PORT}`)
