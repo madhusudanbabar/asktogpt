@@ -3,6 +3,7 @@ const app = conversation();
 const { openai } = require("../openai/index");
 
 app.handle("test_handle", (conv) => {
+  console.log(conv);
   if (conv.intent.name == "query") {
     openai
       .createCompletion({
